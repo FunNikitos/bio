@@ -1,0 +1,14 @@
+{
+  "name": "bio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm --prefix web run build",
+    "check": "npm --prefix web run check",
+    "test:web": "npm --prefix web run test",
+    "test:server": "node --test server/test/server.test.mjs",
+    "test": "npm run check && npm run test:web && npm run test:server",
+    "start": "node server/index.mjs"
+  }
+}
