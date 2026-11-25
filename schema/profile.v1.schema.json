@@ -1,0 +1,327 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/FunNikitos/bio/schema/profile.v1.schema.json",
+  "title": "Bio Profile Configuration v1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "meta",
+    "identity",
+    "avatar",
+    "layout",
+    "theme",
+    "effects",
+    "audio",
+    "links",
+    "badges",
+    "blocks",
+    "analytics"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "meta": {
+      "type": "object",
+      "required": ["tabTitle", "animatedTabTitle", "nsfwGate", "showBrandingFooter"],
+      "properties": {
+        "tabTitle": { "type": "string", "maxLength": 60 },
+        "animatedTabTitle": { "type": "boolean" },
+        "faviconUrl": { "type": "string" },
+        "seoTitle": { "type": "string", "maxLength": 100 },
+        "seoDescription": { "type": "string", "maxLength": 260 },
+        "seoImageUrl": { "type": "string" },
+        "nsfwGate": { "type": "boolean" },
+        "passcode": { "type": "string", "maxLength": 64 },
+        "passcodeHint": { "type": "string", "maxLength": 120 },
+        "showBrandingFooter": { "type": "boolean" }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "required": ["displayName", "username", "bio", "tags"],
+      "properties": {
+        "displayName": { "type": "string", "maxLength": 48 },
+        "username": { "type": "string", "maxLength": 32 },
+        "uid": { "type": "integer", "minimum": 1 },
+        "showUid": { "type": "boolean" },
+        "showUsername": { "type": "boolean" },
+        "showJoinDate": { "type": "boolean" },
+        "joinDate": { "type": "string" },
+        "pronounsLeft": { "type": "string", "maxLength": 20 },
+        "pronounsRight": { "type": "string", "maxLength": 20 },
+        "location": { "type": "string", "maxLength": 60 },
+        "status": { "type": "string", "maxLength": 80 },
+        "bio": { "type": "string", "maxLength": 600 },
+        "tagAlign": { "type": "string", "enum": ["left", "center", "right"] },
+        "tags": {
+          "type": "array",
+          "maxItems": 12,
+          "items": { "type": "string", "maxLength": 30 }
+        },
+        "verified": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "placement": { "type": "string", "enum": ["displayName", "username", "both"] },
+            "color": { "type": "string" }
+          }
+        }
+      }
+    },
+    "avatar": {
+      "type": "object",
+      "required": ["visible", "shape", "size"],
+      "properties": {
+        "url": { "type": "string" },
+        "visible": { "type": "boolean" },
+        "shape": { "type": "string", "enum": ["circle", "rounded", "square", "hexagon"] },
+        "size": { "type": "integer", "minimum": 64, "maximum": 200 },
+        "blur": { "type": "number", "minimum": 0, "maximum": 10 },
+        "objectX": { "type": "number", "minimum": 0, "maximum": 100 },
+        "objectY": { "type": "number", "minimum": 0, "maximum": 100 },
+        "scale": { "type": "number", "minimum": 0.5, "maximum": 2 },
+        "frameStyle": { "type": "string", "enum": ["none", "thin", "accent", "gradient", "glow"] },
+        "frameColor": { "type": "string" },
+        "decoration": {
+          "type": "string",
+          "enum": ["none", "aurora-halo", "angel-wings", "kitty-ears", "neon-headphones", "sakura-crown", "frost-crown", "custom"]
+        },
+        "customDecorationUrl": { "type": "string" },
+        "expandOnClick": { "type": "boolean" },
+        "protectImage": { "type": "boolean" },
+        "bannerUrl": { "type": "string" },
+        "bannerFade": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "bannerAvatarCutout": { "type": "boolean" }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "required": ["pageMode", "cardLayout", "cardOpacity", "cardBlur", "cardRadius"],
+      "properties": {
+        "pageMode": { "type": "string", "enum": ["card", "sections", "terminal"] },
+        "cardLayout": {
+          "type": "string",
+          "enum": ["classic", "compact", "stacked", "float", "bento", "cinematic-split", "dock-bottom-left", "horizon", "transparent"]
+        },
+        "alignment": { "type": "string", "enum": ["left", "center", "right"] },
+        "pageScale": { "type": "integer", "minimum": 85, "maximum": 150 },
+        "cardStyle": { "type": "string", "enum": ["classic", "frosted", "aurora", "outlined", "transparent"] },
+        "cardSurfacePattern": { "type": "string", "enum": ["solid", "gradient", "glow", "grid", "dots", "aurora", "mesh"] },
+        "cardWidth": { "type": "integer", "minimum": 340, "maximum": 920 },
+        "cardHeight": { "type": "integer", "minimum": 0, "maximum": 900 },
+        "cardOpacity": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "cardBlur": { "type": "integer", "minimum": 0, "maximum": 50 },
+        "cardRadius": { "type": "integer", "minimum": 0, "maximum": 40 },
+        "cardContentFade": { "type": "integer", "minimum": 40, "maximum": 100 },
+        "borderWidth": { "type": "integer", "minimum": 0, "maximum": 8 },
+        "borderStyle": { "type": "string", "enum": ["none", "subtle", "solid", "dashed", "dotted", "glow"] },
+        "borderAnimated": { "type": "string", "enum": ["none", "two-corners", "single-line", "rainbow"] },
+        "cardHoverEffect": { "type": "string", "enum": ["none", "lift", "scale", "glow"] },
+        "tiltEnabled": { "type": "boolean" },
+        "tiltMode": { "type": "string", "enum": ["screen", "parallax"] },
+        "tiltStrength": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "entranceAnimation": {
+          "type": "string",
+          "enum": ["none", "rise", "fade", "zoom", "blur", "drop", "flip", "slide", "swing", "bounce", "spin", "unfold", "cascade"]
+        },
+        "elementsStagger": { "type": "string", "enum": ["none", "building-blocks", "rise-up", "pop-in"] },
+        "cardDelaySec": { "type": "number", "minimum": 0, "maximum": 10 },
+        "sectionMode": {
+          "type": "object",
+          "properties": {
+            "snap": { "type": "boolean" },
+            "dotsSide": { "type": "string", "enum": ["left", "right", "hidden"] },
+            "wide": { "type": "boolean" },
+            "scrollHint": { "type": "string", "maxLength": 50 }
+          }
+        },
+        "terminalMode": {
+          "type": "object",
+          "properties": {
+            "promptName": { "type": "string", "maxLength": 24 },
+            "theme": { "type": "string", "enum": ["green", "amber", "white", "accent"] },
+            "typingSpeed": { "type": "integer", "minimum": 1, "maximum": 10 }
+          }
+        },
+        "cornerWidgets": {
+          "type": "object",
+          "properties": {
+            "views": { "type": "string", "enum": ["top-left", "top-right", "bottom-left", "bottom-right", "inline", "hidden"] },
+            "audio": { "type": "string", "enum": ["top-left", "top-right", "bottom-left", "bottom-right", "detached", "inline", "hidden"] }
+          }
+        }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "required": ["accent", "text", "background", "cardColor", "fontFamily"],
+      "properties": {
+        "presetId": { "type": "string" },
+        "accent": { "type": "string" },
+        "text": { "type": "string" },
+        "background": { "type": "string" },
+        "cardColor": { "type": "string" },
+        "gradientColor": { "type": "string" },
+        "iconColor": { "type": "string" },
+        "fx1": { "type": "string" },
+        "fx2": { "type": "string" },
+        "specificTextColors": { "type": "object", "additionalProperties": { "type": "string" } },
+        "fontFamily": { "type": "string" },
+        "usernameFontFamily": { "type": "string" },
+        "customFontUrl": { "type": "string" },
+        "customFontName": { "type": "string" },
+        "fontSizeScale": { "type": "number", "minimum": 0.75, "maximum": 1.5 },
+        "usernameSize": { "type": "integer", "minimum": 18, "maximum": 96 },
+        "usernameWeight": { "type": "integer", "enum": [400, 600, 700, 800, 900] },
+        "bioSize": { "type": "string", "enum": ["small", "medium", "large"] },
+        "letterSpacing": { "type": "number", "minimum": -0.1, "maximum": 0.3 }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "required": ["splash", "background", "usernameEffect", "bioEffect", "typewriter", "cursor"],
+      "properties": {
+        "splash": {
+          "type": "object",
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "style": { "type": "string", "enum": ["blur-curtain", "radial-dark", "slit-curtain"] },
+            "text": { "type": "string", "maxLength": 60 },
+            "subtitle": { "type": "string", "maxLength": 100 },
+            "countdownSec": { "type": "integer", "minimum": 0, "maximum": 10 }
+          }
+        },
+        "background": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["solid", "linear", "radial", "image", "video"] },
+            "color1": { "type": "string" },
+            "color2": { "type": "string" },
+            "gradientAngle": { "type": "integer", "minimum": 0, "maximum": 360 },
+            "mediaUrl": { "type": "string" },
+            "posterUrl": { "type": "string" },
+            "videoMuted": { "type": "boolean" },
+            "videoOpacity": { "type": "integer", "minimum": 10, "maximum": 100 },
+            "mediaBlur": { "type": "integer", "minimum": 0, "maximum": 40 },
+            "dim": { "type": "integer", "minimum": 0, "maximum": 90 },
+            "colorWash": { "type": "string" },
+            "washStrength": { "type": "integer", "minimum": 0, "maximum": 100 },
+            "fit": { "type": "string", "enum": ["cover", "contain"] },
+            "filter": { "type": "string", "enum": ["none", "blur", "dots", "grain", "vignette", "night", "old-tv"] },
+            "particleEffect": {
+              "type": "string",
+              "enum": ["none", "snow", "rain", "diagonal-rain", "stars", "embers", "fireflies", "matrix", "sakura", "bubbles", "confetti", "geometric"]
+            },
+            "particleIntensity": { "type": "number", "minimum": 0.2, "maximum": 2.5 }
+          }
+        },
+        "usernameEffect": {
+          "type": "string",
+          "enum": ["none", "glow", "neon", "rainbow", "gradient", "flow", "shine", "glitch", "wave", "sparkle", "typewriter", "scramble", "fuzzy", "outline", "shadow3d", "heartbeat"]
+        },
+        "bioEffect": {
+          "type": "string",
+          "enum": ["none", "glow", "gradient", "rainbow", "shine", "glitch", "wave", "typewriter", "scramble", "fade-lines"]
+        },
+        "extraNameGlow": { "type": "boolean" },
+        "effectColor1": { "type": "string" },
+        "effectColor2": { "type": "string" },
+        "typewriter": {
+          "type": "object",
+          "properties": {
+            "phrases": { "type": "array", "items": { "type": "string", "maxLength": 140 } },
+            "typeSpeed": { "type": "integer", "minimum": 1, "maximum": 10 },
+            "deleteSpeed": { "type": "integer", "minimum": 1, "maximum": 10 },
+            "caret": { "type": "string", "enum": ["bar", "block", "underscore", "none"] },
+            "loop": { "type": "boolean" }
+          }
+        },
+        "cursor": {
+          "type": "object",
+          "properties": {
+            "customUrl": { "type": "string" },
+            "sizePct": { "type": "integer", "minimum": 50, "maximum": 250 },
+            "trail": {
+              "type": "string",
+              "enum": ["none", "dots", "sparkles", "embers", "rainbow", "bubbles", "hearts", "smoke", "ring", "ghost", "oneko-cat"]
+            },
+            "trailColor": { "type": "string" },
+            "trailSpeed": { "type": "string", "enum": ["slow", "normal", "fast"] },
+            "clickSound": { "type": "string", "enum": ["none", "tap", "click", "pop", "bubble", "blip", "coin"] },
+            "clickVolume": { "type": "integer", "minimum": 0, "maximum": 100 }
+          }
+        }
+      }
+    },
+    "audio": {
+      "type": "object",
+      "required": ["enabled", "tracks"],
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "autoplayOnEnter": { "type": "boolean" },
+        "shuffle": { "type": "boolean" },
+        "playerStyle": { "type": "string", "enum": ["corner", "detached", "inline", "volume-only", "hidden"] },
+        "defaultVolume": { "type": "integer", "minimum": 5, "maximum": 100 },
+        "syncVideoWithAudio": { "type": "boolean" },
+        "visualizer": { "type": "string", "enum": ["off", "bars", "waveform", "ring"] },
+        "beatShake": { "type": "boolean" },
+        "showLyrics": { "type": "boolean" },
+        "tracks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "url"],
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "artist": { "type": "string" },
+              "url": { "type": "string" },
+              "coverUrl": { "type": "string" },
+              "lrcText": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "required": ["items"],
+      "properties": {
+        "linkStyle": { "type": "string", "enum": ["icons", "minimal", "outline", "cards", "pills"] },
+        "iconStyle": { "type": "string", "enum": ["plain", "soft", "circle", "outline"] },
+        "iconSizePx": { "type": "integer", "minimum": 24, "maximum": 56 },
+        "monochromeIcons": { "type": "boolean" },
+        "glowIcons": { "type": "boolean" },
+        "align": { "type": "string", "enum": ["left", "center", "right"] },
+        "randomizeOrder": { "type": "boolean" },
+        "items": { "type": "array" }
+      }
+    },
+    "badges": {
+      "type": "object",
+      "properties": {
+        "placement": { "type": "string", "enum": ["next-to-name", "below-name"] },
+        "boxStyle": { "type": "string", "enum": ["none", "one-box", "each-box"] },
+        "sizePct": { "type": "integer", "minimum": 60, "maximum": 200 },
+        "monochrome": { "type": "boolean" },
+        "glow": { "type": "boolean" },
+        "glowColor": { "type": "string" },
+        "items": { "type": "array" }
+      }
+    },
+    "blocks": {
+      "type": "array"
+    },
+    "analytics": {
+      "type": "object",
+      "properties": {
+        "trackViews": { "type": "boolean" },
+        "showViewsBadge": { "type": "boolean" },
+        "trackClicks": { "type": "boolean" },
+        "enableLikes": { "type": "boolean" }
+      }
+    }
+  }
+}
