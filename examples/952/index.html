@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#19181f">
+  <meta name="description" content="Музыкальная визитка 952 — Под гипнозом.">
+  <title>952 · Под гипнозом</title>
+  <link rel="icon" href="./media/portrait.webp">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./card.js"></script>
+</head>
+<body>
+  <video class="scene" id="scene" poster="./media/poster.webp" muted playsinline loop preload="none" aria-hidden="true">
+    <source media="(max-width: 600px)" src="./media/scene.mp4" type="video/mp4">
+    <source src="./media/scene-hd.mp4" type="video/mp4">
+  </video>
+  <div class="shade" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <main class="stage">
+    <button type="button" class="scene-control enhanced" id="scene-control" aria-pressed="false">
+      <span class="scene-indicator" aria-hidden="true"></span><span id="scene-label">Включить видео</span>
+    </button>
+    <article class="card" aria-labelledby="nickname">
+      <header class="identity">
+        <img class="avatar" src="./media/portrait.webp" width="84" height="84" alt="Портрет 952">
+        <h1 id="nickname">952</h1>
+        <button type="button" class="copy enhanced" id="copy" aria-label="Скопировать ник" title="Скопировать ник">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M15 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"/></svg>
+        </button>
+      </header>
+      <section class="player" aria-labelledby="song">
+        <div class="track">
+          <div>
+            <h2 id="song">Под гипнозом</h2>
+            <p class="artist">ARTIK &amp; ASTI</p>
+          </div>
+          <button type="button" id="play" class="play enhanced" aria-label="Воспроизвести музыку" title="Воспроизвести музыку">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="play-shape" d="M8 5.5q0-1.1 1-.5l11 6.3q1 .7 0 1.4L9 19q-1 .6-1-.5z"/><path class="pause-shape" d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+          </button>
+        </div>
+        <div class="timeline enhanced">
+          <div class="wave" id="wave" aria-hidden="true"></div>
+          <input type="range" id="seek" min="0" max="1000" value="0" step="1" aria-label="Позиция в треке" aria-valuetext="0:00">
+        </div>
+        <div class="times enhanced"><span id="elapsed">0:00</span><span id="duration">0:18</span></div>
+        <audio id="audio" preload="metadata" loop src="./media/hypnosis.m4a"></audio>
+        <noscript><p><a href="./media/hypnosis.m4a">Слушать фрагмент</a> · <a href="./media/scene.mp4">Смотреть видео</a></p></noscript>
+        <p id="notice" class="notice" role="status"></p>
+      </section>
+    </article>
+  </main>
+  <script type="application/json" id="profile-options">
+    {"version":1,"tilt":true,"grain":true,"startVideoWithMusic":true,"waveform":[42,60,83,73,91,87,94,96,84,96,87,89,100,93,89,61,87,86,90,99,91,87,98,81,58,51,48,57,52,82,63,80,74,94,84,62,77,74,81,90,89,92,93,78,78,78,86,82,78,73,67,79,72,80,74,57,68,54,54,31]}
+  </script>
+</body>
+</html>
