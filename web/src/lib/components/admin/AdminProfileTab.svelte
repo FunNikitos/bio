@@ -134,6 +134,16 @@
     </label>
   </div>
 
+  {#if draft.avatar.decoration === 'custom'}
+    <div class="adm-row">
+      <label class="adm-upload">
+        Загрузить рамку
+        <input type="file" accept="image/*" onchange={(e) => { const f = (e.target as HTMLInputElement).files?.[0]; if (f) onUpload(f, (url) => { draft.avatar.customDecorationUrl = url; onMutate(); }); }} />
+      </label>
+      <input type="text" placeholder="URL рамки/декорации аватара..." bind:value={draft.avatar.customDecorationUrl} oninput={onMutate} />
+    </div>
+  {/if}
+
   <div class="adm-grid2">
     <label>Размер аватара: {draft.avatar.size}px
       <input type="range" min="64" max="200" step="4" bind:value={draft.avatar.size} oninput={onMutate} />

@@ -78,7 +78,7 @@
         break;
       case 'discord':
         block = {
-          id, visible: true, type: 'discord', displayName: draft.identity.displayName, username: draft.identity.username,
+          id, visible: true, type: 'discord', style: 'card', displayName: draft.identity.displayName, username: draft.identity.username,
           status: 'online', activity: 'Разрабатываю bio', guildTag: 'BIO', avatarUrl: draft.avatar.url, bannerColor: '#5865f2', showBadges: true
         };
         break;
@@ -190,6 +190,7 @@
     <label class="chk"><input type="checkbox" bind:checked={draft.audio.syncVideoWithAudio} onchange={onMutate} /> Синхронизировать видео с музыкой</label>
     <label class="chk"><input type="checkbox" bind:checked={draft.audio.showLyrics} onchange={onMutate} /> Караоке-лирика (.lrc)</label>
     <label class="chk"><input type="checkbox" bind:checked={draft.audio.beatShake} onchange={onMutate} /> Пульс под бит</label>
+    <label class="chk"><input type="checkbox" bind:checked={draft.audio.showCornerVolume} onchange={onMutate} /> Кнопка звука в левом верхнем углу</label>
   </div>
 
   <div class="adm-grid3">
@@ -271,10 +272,23 @@
           <label class="chk"><input type="checkbox" bind:checked={blk.hour12} onchange={onMutate} /> 12-ч формат</label>
         </div>
       {:else if blk.type === 'discord'}
+        <div class="adm-grid3">
+          <select bind:value={blk.style} onchange={onMutate}>
+            <option value="card">Обычная карточка</option>
+            <option value="pill">Пилюля по центру (как guns.lol)</option>
+          </select>
+          <select bind:value={blk.status} onchange={onMutate}>
+            <option value="online">Online</option>
+            <option value="idle">Idle</option>
+            <option value="dnd">DND</option>
+            <option value="offline">Offline</option>
+          </select>
+          <input type="text" placeholder="URL аватара Discord" bind:value={blk.avatarUrl} oninput={onMutate} />
+        </div>
         <div class="adm-grid2">
           <input type="text" placeholder="Имя в Discord" bind:value={blk.displayName} oninput={onMutate} />
           <input type="text" placeholder="Username" bind:value={blk.username} oninput={onMutate} />
-          <input type="text" placeholder="Активность" bind:value={blk.activity} oninput={onMutate} />
+          <input type="text" placeholder="Активность / подпись (last seen unknown)" bind:value={blk.activity} oninput={onMutate} />
           <input type="text" placeholder="Тег сервера (BIO)" bind:value={blk.guildTag} oninput={onMutate} />
         </div>
       {:else if blk.type === 'quote'}

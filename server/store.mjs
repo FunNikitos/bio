@@ -134,6 +134,7 @@ export function defaultProfileSnapshot() {
       autoplayOnEnter: false,
       shuffle: false,
       playerStyle: 'detached',
+      showCornerVolume: false,
       defaultVolume: 60,
       syncVideoWithAudio: false,
       visualizer: 'bars',

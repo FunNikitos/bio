@@ -18,7 +18,7 @@ describe('profile schema and presets', () => {
     expect(normalized.links.items.length).toBeGreaterThan(0);
   });
 
-  it('applies all 8 skin presets without erasing user identity or links', () => {
+  it('applies all skin presets including romash-glass without erasing user identity or links', () => {
     const base = createDefaultProfile();
     base.identity.displayName = 'Custom Owner';
     for (const preset of SKIN_PRESETS) {
@@ -28,6 +28,10 @@ describe('profile schema and presets', () => {
       const css = computeProfileStyle(next);
       expect(css.rootVars).toContain('--bio-accent:');
     }
+    const romash = SKIN_PRESETS.find((p) => p.id === 'romash-glass')!.apply(structuredClone(base));
+    expect(romash.layout.cardWidth).toBe(640);
+    expect(romash.layout.cornerWidgets.views).toBe('card-bottom-left');
+    expect(romash.audio.showCornerVolume).toBe(true);
   });
 });
 

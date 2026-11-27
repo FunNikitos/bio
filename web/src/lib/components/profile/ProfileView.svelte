@@ -39,6 +39,8 @@
   let renderedName = $state('');
   let renderedBio = $state('');
   let activeSection = $state(0);
+  let audioVolume = $state(0.6);
+  let audioMuted = $state(false);
 
   let nekoPos = $state({ x: 80, y: 80 });
 
@@ -273,11 +275,11 @@
   {/if}
 
   <!-- Optional Corner Views / Likes Counter -->
-  {#if (profile.analytics.showViewsBadge || profile.analytics.enableLikes) && viewsCorner !== 'inline' && viewsCorner !== 'hidden'}
+  {#if (profile.analytics.showViewsBadge || profile.analytics.enableLikes) && viewsCorner !== 'inline' && viewsCorner !== 'card-bottom-left' && viewsCorner !== 'card-bottom-right' && viewsCorner !== 'hidden'}
     <div class="bio-corner {viewsCorner}">
       <div class="bio-pill-chip">
         {#if profile.analytics.showViewsBadge}
-          <span>👁 {views}</span>
+          <span>👁 {views.toLocaleString('en-US')}</span>
         {/if}
         {#if profile.analytics.enableLikes}
           <button
@@ -294,10 +296,35 @@
     </div>
   {/if}
 
+  <!-- Independent Corner Volume Button (outside transformed card/scale shell so fixed stays on viewport) -->
+  {#if profile.audio.enabled && profile.audio.tracks.length > 0 && profile.audio.showCornerVolume && profile.audio.playerStyle !== 'volume-only' && profile.audio.playerStyle !== 'hidden'}
+    <div class="corner-vol-dock" class:is-preview={isPreview}>
+      <button type="button" class="corner-vol-btn" onclick={() => { audioMuted = !audioMuted; }} aria-label={audioMuted ? 'Включить звук' : 'Выключить звук'}>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          {#if audioMuted}
+            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.8 8.8 0 0 0 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a9 9 0 0 0 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />
+          {:else}
+            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+          {/if}
+        </svg>
+      </button>
+      <input
+        type="range"
+        class="corner-vol-range"
+        min="0"
+        max="1"
+        step="0.02"
+        value={audioMuted ? 0 : audioVolume}
+        aria-label="Громкость музыки"
+        oninput={(e) => { audioVolume = Number((e.target as HTMLInputElement).value); audioMuted = audioVolume === 0; }}
+      />
+    </div>
+  {/if}
+
   <!-- Optional Corner Audio Player -->
   {#if profile.audio.enabled && profile.audio.tracks.length > 0 && audioCorner !== 'inline' && audioCorner !== 'detached' && audioCorner !== 'hidden'}
     <div class="bio-corner {audioCorner}">
-      <AudioWidget {profile} {entered} {videoEl} />
+      <AudioWidget {profile} {entered} {videoEl} bind:volume={audioVolume} bind:muted={audioMuted} />
     </div>
   {/if}
 
@@ -348,7 +375,7 @@
           {@render mainCardContent()}
           {#if audioCorner === 'detached' && profile.audio.enabled && profile.audio.tracks.length > 0}
             <div class="detached-audio-wrap">
-              <AudioWidget {profile} {entered} {videoEl} />
+              <AudioWidget {profile} {entered} {videoEl} bind:volume={audioVolume} bind:muted={audioMuted} />
             </div>
           {/if}
         </div>
@@ -492,22 +519,28 @@
     <article
       bind:this={cardEl}
       class="bio-card"
+      class:has-card-views={(profile.analytics.showViewsBadge || profile.analytics.enableLikes) && (viewsCorner === 'card-bottom-left' || viewsCorner === 'card-bottom-right')}
       style="background:{computed.cardSurfaceCss}"
     >
       <div class="bio-card-inner">
         {@render identityBlock()}
 
         {#if !heroOnly}
-          <LinksSection {profile} onTrackClick={onLinkClick} onNotify={showToast} />
-          {#if audioCorner === 'inline' && profile.audio.enabled && profile.audio.tracks.length > 0}
-            <div class="inline-audio"><AudioWidget {profile} {entered} {videoEl} /></div>
+          {#if profile.layout.blocksBeforeLinks}
+            <BlocksSection blocks={profile.blocks} bentoGrid={isBento} />
+            <LinksSection {profile} onTrackClick={onLinkClick} onNotify={showToast} />
+          {:else}
+            <LinksSection {profile} onTrackClick={onLinkClick} onNotify={showToast} />
+            <BlocksSection blocks={profile.blocks} bentoGrid={isBento} />
           {/if}
-          <BlocksSection blocks={profile.blocks} bentoGrid={isBento} />
+          {#if audioCorner === 'inline' && profile.audio.enabled && profile.audio.tracks.length > 0}
+            <div class="inline-audio"><AudioWidget {profile} {entered} {videoEl} bind:volume={audioVolume} bind:muted={audioMuted} /></div>
+          {/if}
         {/if}
 
         {#if viewsCorner === 'inline' && (profile.analytics.showViewsBadge || profile.analytics.enableLikes)}
           <div class="inline-stats">
-            {#if profile.analytics.showViewsBadge}<span>👁 {views}</span>{/if}
+            {#if profile.analytics.showViewsBadge}<span>👁 {views.toLocaleString('en-US')}</span>{/if}
             {#if profile.analytics.enableLikes}
               <button type="button" class="like-btn" class:liked={likedLocal} onclick={() => { if (!likedLocal) { likedLocal = true; onLike?.(); } }}>
                 ♥ {likes + (likedLocal && isPreview ? 1 : 0)}
@@ -516,6 +549,17 @@
           </div>
         {/if}
       </div>
+
+      {#if (profile.analytics.showViewsBadge || profile.analytics.enableLikes) && (viewsCorner === 'card-bottom-left' || viewsCorner === 'card-bottom-right')}
+        <div class="card-corner-views {viewsCorner}">
+          {#if profile.analytics.showViewsBadge}<span>👁 {views.toLocaleString('en-US')}</span>{/if}
+          {#if profile.analytics.enableLikes}
+            <button type="button" class="like-btn" class:liked={likedLocal} onclick={() => { if (!likedLocal) { likedLocal = true; onLike?.(); } }}>
+              ♥ {likes + (likedLocal && isPreview ? 1 : 0)}
+            </button>
+          {/if}
+        </div>
+      {/if}
     </article>
   {/if}
 {/snippet}
@@ -571,8 +615,57 @@
   .badges-wrap.is-glow .badge-pill svg { filter: drop-shadow(0 0 6px var(--bio-badge-glow)); }
   .badge-label { color: var(--bio-text); font-size: 0.72rem; }
 
-  .detached-audio-wrap, .inline-audio { display: flex; justify-content: center; margin-top: 12px; width: 100%; }
+  .detached-audio-wrap, .inline-audio { display: flex; justify-content: center; margin-top: 15px; width: 100%; }
   .inline-stats { display: flex; justify-content: center; gap: 14px; font-size: 0.82rem; color: var(--bio-text-muted); }
+  .card-corner-views {
+    position: absolute;
+    bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.86rem;
+    font-weight: 550;
+    color: var(--bio-text);
+  }
+  .card-corner-views.card-bottom-left { left: 16px; }
+  .card-corner-views.card-bottom-right { right: 16px; }
+
+  .corner-vol-dock {
+    position: fixed;
+    top: max(15px, env(safe-area-inset-top));
+    left: max(15px, env(safe-area-inset-left));
+    z-index: 25;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 56px;
+    width: 56px;
+    padding: 12px;
+    overflow: hidden;
+    border-radius: 15px;
+    background: rgba(27, 27, 27, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    transition: width 0.25s ease;
+  }
+  .corner-vol-dock.is-preview { position: absolute; }
+  .corner-vol-dock:hover,
+  .corner-vol-dock:focus-within { width: 164px; }
+  .corner-vol-btn {
+    width: 28px;
+    height: 28px;
+    flex: none;
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    color: var(--bio-text);
+  }
+  .corner-vol-btn svg { width: 24px; height: 24px; fill: currentColor; }
+  .corner-vol-range { width: 92px; accent-color: var(--bio-text); }
   .like-btn { background: transparent; border: none; padding: 0; cursor: pointer; font-weight: 600; }
   .like-btn.liked { color: #fb7185; }
 

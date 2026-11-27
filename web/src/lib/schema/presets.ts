@@ -385,5 +385,84 @@ export const SKIN_PRESETS: ThemePreset[] = [
         bioEffect: 'none'
       }
     })
+  },
+  {
+    id: 'romash-glass',
+    name: 'Guns Classic (Romash)',
+    subtitle: 'Тёмное стекло без рамки, снег, Discord-пилюля и нижний плеер',
+    sourceHint: 'guns.lol/romash_10',
+    apply: (p) => ({
+      ...p,
+      avatar: {
+        ...p.avatar,
+        shape: 'circle',
+        size: 118,
+        frameStyle: 'none'
+      },
+      layout: {
+        ...p.layout,
+        pageMode: 'card',
+        cardLayout: 'classic',
+        alignment: 'center',
+        pageScale: 100,
+        cardStyle: 'frosted',
+        cardSurfacePattern: 'solid',
+        cardWidth: 640,
+        cardOpacity: 13,
+        cardBlur: 10,
+        cardRadius: 20,
+        borderStyle: 'none',
+        borderWidth: 0,
+        borderAnimated: 'none',
+        tiltEnabled: false,
+        entranceAnimation: 'rise',
+        cornerWidgets: { views: 'card-bottom-left', audio: 'detached' },
+        blocksBeforeLinks: true
+      },
+      theme: {
+        ...p.theme,
+        presetId: 'romash-glass',
+        accent: '#ffffff',
+        text: '#ffffff',
+        background: '#080808',
+        cardColor: '#1b1b1b',
+        gradientColor: '#1b1b1b',
+        iconColor: '#ffffff',
+        fx1: '#ffffff',
+        fx2: '#e2e8f0',
+        fontFamily: 'Onest',
+        usernameSize: 40,
+        usernameWeight: 600,
+        bioSize: 'medium'
+      },
+      effects: {
+        ...p.effects,
+        splash: { ...p.effects.splash, enabled: true, style: 'blur-curtain', text: 'click to enter...', subtitle: '' },
+        background: { ...p.effects.background, type: 'solid', color1: '#080808', color2: '#080808', filter: 'none', particleEffect: 'snow', particleIntensity: 1, dim: 15 },
+        usernameEffect: 'sparkle',
+        bioEffect: 'none',
+        effectColor1: '#ffffff',
+        effectColor2: '#cbd5e1',
+        cursor: { ...p.effects.cursor, trail: 'none', clickSound: 'none' }
+      },
+      audio: {
+        ...p.audio,
+        enabled: true,
+        autoplayOnEnter: true,
+        playerStyle: 'detached',
+        showCornerVolume: true,
+        visualizer: 'off'
+      },
+      links: {
+        ...p.links,
+        linkStyle: 'icons',
+        iconStyle: 'plain',
+        iconSizePx: 38,
+        monochromeIcons: false,
+        glowIcons: false,
+        align: 'center'
+      },
+      analytics: { ...p.analytics, showViewsBadge: true, trackViews: true, enableLikes: false }
+    })
   }
 ];

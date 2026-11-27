@@ -131,6 +131,9 @@
   .bio-link-item:hover {
     transform: translateY(-2px);
   }
+  .style-icons .bio-link-item:hover {
+    transform: scale(1.1);
+  }
 
   .link-icon-box {
     width: var(--bio-icon-size, 38px);
@@ -146,6 +149,10 @@
     width: 58%;
     height: 58%;
     fill: currentColor;
+  }
+  .style-icons .ico-plain .link-icon-box svg {
+    width: 88%;
+    height: 88%;
   }
   .custom-icon {
     width: 70%;

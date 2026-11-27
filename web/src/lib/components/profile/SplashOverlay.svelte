@@ -181,6 +181,9 @@
     gap: 6px;
     transition: transform 0.18s ease, border-color 0.18s ease;
   }
+  .blur-curtain .splash-trigger {
+    border-color: transparent;
+  }
   .splash-trigger:hover:not(:disabled) {
     transform: scale(1.02);
     border-color: var(--bio-accent, #8b5cf6);

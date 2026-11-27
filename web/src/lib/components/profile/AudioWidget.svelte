@@ -6,17 +6,17 @@
     profile: ProfileConfigV1;
     entered: boolean;
     videoEl: HTMLVideoElement | null;
+    volume?: number;
+    muted?: boolean;
   }
 
-  let { profile, entered, videoEl }: Props = $props();
+  let { profile, entered, videoEl, volume = $bindable(0.6), muted = $bindable(false) }: Props = $props();
 
   let audioEl = $state<HTMLAudioElement | null>(null);
   let trackIdx = $state(0);
   let playing = $state(false);
   let currentTime = $state(0);
   let duration = $state(0);
-  let volume = $state(0.6);
-  let muted = $state(false);
   let vizBars = $state<number[]>(Array.from({ length: 18 }, () => 18));
 
   const tracks = $derived(profile.audio.tracks);
@@ -125,28 +125,38 @@
       </div>
     {:else}
       <div class="audio-card" class:is-beat={playing && profile.audio.beatShake}>
-        <div class="audio-top">
+        <div class="audio-row-main">
           {#if currentTrack.coverUrl}
             <img src={currentTrack.coverUrl} alt={currentTrack.title} class="audio-cover" />
           {:else}
             <div class="audio-cover fallback">♪</div>
           {/if}
-          <div class="audio-meta">
-            <div class="audio-title">{currentTrack.title}</div>
-            {#if currentTrack.artist}
-              <div class="audio-artist">{currentTrack.artist}</div>
-            {/if}
-          </div>
-          <div class="audio-controls">
-            {#if tracks.length > 1}
-              <button type="button" class="ctrl-btn" aria-label="Предыдущий трек" onclick={() => stepTrack(-1)}>⏮</button>
-            {/if}
-            <button type="button" class="ctrl-btn play-main" aria-label={playing ? 'Пауза' : 'Воспроизвести'} onclick={togglePlay}>
-              {playing ? '⏸' : '▶'}
-            </button>
-            {#if tracks.length > 1}
-              <button type="button" class="ctrl-btn" aria-label="Следующий трек" onclick={() => stepTrack(1)}>⏭</button>
-            {/if}
+          <div class="audio-right">
+            <div class="audio-head">
+              <span class="audio-title">{currentTrack.title}</span>
+              {#if currentTrack.artist}
+                <span class="audio-artist">· {currentTrack.artist}</span>
+              {/if}
+            </div>
+            <div class="audio-seek-row">
+              <span>{fmt(currentTime)}</span>
+              <input
+                type="range"
+                min="0"
+                max="1000"
+                value={duration > 0 ? Math.round((currentTime / duration) * 1000) : 0}
+                aria-label="Позиция трека"
+                oninput={(e) => seekTo((e.target as HTMLInputElement).value)}
+              />
+              <span>{fmt(duration)}</span>
+              <div class="audio-controls">
+                <button type="button" class="ctrl-btn" aria-label="Предыдущий трек" onclick={() => stepTrack(-1)} disabled={tracks.length <= 1}>⏮</button>
+                <button type="button" class="ctrl-btn play-main" aria-label={playing ? 'Пауза' : 'Воспроизвести'} onclick={togglePlay}>
+                  {playing ? '⏸' : '▶'}
+                </button>
+                <button type="button" class="ctrl-btn" aria-label="Следующий трек" onclick={() => stepTrack(1)} disabled={tracks.length <= 1}>⏭</button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -164,22 +174,6 @@
             {/each}
           </div>
         {/if}
-
-        <div class="audio-seek-row">
-          <span>{fmt(currentTime)}</span>
-          <input
-            type="range"
-            min="0"
-            max="1000"
-            value={duration > 0 ? Math.round((currentTime / duration) * 1000) : 0}
-            aria-label="Позиция трека"
-            oninput={(e) => seekTo((e.target as HTMLInputElement).value)}
-          />
-          <span>{fmt(duration)}</span>
-          <button type="button" class="mute-mini" onclick={() => { muted = !muted; }} aria-label="Звук">
-            {muted ? '🔇' : '🔊'}
-          </button>
-        </div>
 
         {#if profile.audio.showLyrics && lrcLines.length > 0}
           <div class="lyrics-box">
@@ -213,12 +207,13 @@
   }
 
   .audio-card {
-    width: min(100%, 360px);
-    padding: 12px 14px;
-    border-radius: calc(var(--bio-card-radius, 20px) * 0.78);
-    background: color-mix(in srgb, var(--bio-card-color) 78%, rgba(0, 0, 0, 0.35));
-    backdrop-filter: blur(var(--bio-card-blur, 18px));
-    border: 1px solid color-mix(in srgb, var(--bio-text) 16%, transparent);
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: var(--bio-card-radius, 20px);
+    background: color-mix(in srgb, var(--bio-card-color) 24%, rgba(27, 27, 27, 0.2));
+    backdrop-filter: blur(var(--bio-card-blur, 10px));
+    -webkit-backdrop-filter: blur(var(--bio-card-blur, 10px));
+    border: var(--bio-border-w, 1px) solid var(--bio-border-color, rgba(255, 255, 255, 0.08));
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -226,15 +221,15 @@
   .audio-card.is-beat {
     animation: audioBeat 0.7s ease-in-out infinite;
   }
-  .audio-top {
+  .audio-row-main {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 13px;
   }
   .audio-cover {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
+    width: 62px;
+    height: 62px;
+    border-radius: max(8px, calc(var(--bio-card-radius, 20px) - 10px));
     object-fit: cover;
     flex: none;
   }
@@ -243,57 +238,45 @@
     place-items: center;
     background: color-mix(in srgb, var(--bio-accent) 26%, transparent);
     font-weight: 700;
+    font-size: 1.3rem;
   }
-  .audio-meta { flex: 1; min-width: 0; text-align: left; }
+  .audio-right { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+  .audio-head { display: flex; align-items: baseline; gap: 6px; min-width: 0; text-align: left; }
   .audio-title {
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 1.05rem;
+    font-weight: 500;
     color: var(--bio-slot-trackTitle, var(--bio-text));
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
   .audio-artist {
-    font-size: 0.76rem;
+    font-size: 0.82rem;
     color: var(--bio-text-muted);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .audio-controls { display: flex; align-items: center; gap: 6px; }
+  .audio-controls { display: flex; align-items: center; gap: 4px; flex: none; }
   .ctrl-btn {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
-    border: 1px solid color-mix(in srgb, var(--bio-text) 18%, transparent);
+    border: none;
     background: transparent;
+    color: color-mix(in srgb, var(--bio-text) 60%, transparent);
     cursor: pointer;
     display: grid;
     place-items: center;
-    font-size: 0.78rem;
+    font-size: 0.9rem;
+    padding: 0;
   }
+  .ctrl-btn:disabled { opacity: 0.35; cursor: default; }
   .ctrl-btn.play-main {
-    background: var(--bio-accent);
-    border-color: transparent;
-    color: #fff;
-  }
-  .viz-bars,
-  .viz-wave {
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    height: 22px;
-  }
-  .viz-bars span,
-  .viz-wave span {
-    flex: 1;
-    border-radius: 2px;
-    background: color-mix(in srgb, var(--bio-text) 28%, transparent);
-    transition: height 0.1s ease;
-  }
-  .viz-bars span,
-  .viz-wave span.passed {
-    background: var(--bio-accent);
+    width: 32px;
+    height: 32px;
+    font-size: 1.1rem;
+    color: var(--bio-text);
   }
   .audio-seek-row {
     display: flex;
@@ -302,16 +285,21 @@
     font-size: 0.74rem;
     color: var(--bio-text-muted);
     font-variant-numeric: tabular-nums;
+    min-width: 0;
   }
   .audio-seek-row input[type="range"] {
     flex: 1;
+    min-width: 0;
+    width: 100%;
     accent-color: var(--bio-accent);
   }
-  .mute-mini {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    padding: 0 2px;
+  @media (max-width: 480px) {
+    .audio-card { padding: 12px; }
+    .audio-row-main { gap: 10px; }
+    .audio-cover { width: 52px; height: 52px; }
+    .audio-seek-row { gap: 5px; font-size: 0.7rem; }
+    .ctrl-btn { width: 22px; height: 22px; font-size: 0.8rem; }
+    .ctrl-btn.play-main { width: 28px; height: 28px; font-size: 0.96rem; }
   }
   .lyrics-box {
     max-height: 76px;

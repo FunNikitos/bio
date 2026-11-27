@@ -238,6 +238,9 @@ textarea:focus-visible {
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.36);
   overflow: hidden;
 }
+.bio-card.has-card-views {
+  padding-bottom: 44px;
+}
 
 .bio-card-inner {
   opacity: var(--bio-card-fade, 1);
@@ -536,12 +539,36 @@ textarea:focus-visible {
 .fx-sparkle {
   text-shadow: 0 0 14px color-mix(in srgb, var(--bio-efx1, #fff) 80%, transparent);
 }
+.fx-sparkle::before,
 .fx-sparkle::after {
-  content: '✦';
-  font-size: 0.48em;
-  color: var(--bio-efx1, #fde047);
-  margin-left: 4px;
-  animation: bioPulse 1.4s ease-in-out infinite;
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  pointer-events: none;
+  color: var(--bio-efx1, #ffffff);
+  background: currentColor;
+}
+.fx-sparkle::before {
+  top: 2px;
+  left: 6%;
+  box-shadow:
+    22px 10px 0 0 currentColor,
+    56px -3px 0 0.5px currentColor,
+    92px 24px 0 0 currentColor,
+    124px 6px 0 0.5px currentColor;
+  animation: bioPulse 1.5s ease-in-out infinite;
+}
+.fx-sparkle::after {
+  bottom: 3px;
+  right: 8%;
+  box-shadow:
+    -26px -14px 0 0.5px currentColor,
+    -64px 4px 0 0 currentColor,
+    -102px -18px 0 0 currentColor,
+    12px -22px 0 0.5px currentColor;
+  animation: bioPulse 1.5s ease-in-out 0.75s infinite;
 }
 
 .bio-wave-ch {
@@ -555,6 +582,16 @@ textarea:focus-visible {
   color: var(--bio-slot-bio, var(--bio-text-muted));
   line-height: 1.5;
   font-size: 0.96em;
+  text-align: center;
+}
+.bio-align-left .bio-copy,
+.bio-layout-compact .bio-copy,
+.bio-layout-horizon .bio-copy,
+.bio-layout-dock-bottom-left .bio-copy {
+  text-align: left;
+}
+.bio-align-right .bio-copy {
+  text-align: right;
 }
 .bio-bio-size-small .bio-copy {
   font-size: 0.86em;

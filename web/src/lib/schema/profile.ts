@@ -100,8 +100,16 @@ export type CursorTrail =
   | 'oneko-cat';
 
 export type ClickSound = 'none' | 'tap' | 'click' | 'pop' | 'bubble' | 'blip' | 'coin';
-export type CornerSlot = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | 'inline' | 'hidden';
-export type AudioCornerSlot = CornerSlot | 'detached';
+export type CornerSlot =
+  | 'top-left'
+  | 'top-right'
+  | 'bottom-left'
+  | 'bottom-right'
+  | 'card-bottom-left'
+  | 'card-bottom-right'
+  | 'inline'
+  | 'hidden';
+export type AudioCornerSlot = Exclude<CornerSlot, 'card-bottom-left' | 'card-bottom-right'> | 'detached';
 export type LinkStyle = 'icons' | 'minimal' | 'outline' | 'cards' | 'pills';
 export type IconStyle = 'plain' | 'soft' | 'circle' | 'outline';
 
@@ -171,10 +179,12 @@ export type ContentBlock =
       id: string;
       visible: boolean;
       type: 'discord';
+      style?: 'card' | 'pill';
       displayName: string;
       username: string;
       status: 'online' | 'idle' | 'dnd' | 'offline';
       activity: string;
+      subtext?: string;
       guildTag: string;
       avatarUrl: string;
       bannerColor: string;
@@ -279,6 +289,7 @@ export interface ProfileConfigV1 {
       views: CornerSlot;
       audio: AudioCornerSlot;
     };
+    blocksBeforeLinks?: boolean;
   };
   theme: {
     presetId: string;
@@ -354,6 +365,7 @@ export interface ProfileConfigV1 {
     autoplayOnEnter: boolean;
     shuffle: boolean;
     playerStyle: 'corner' | 'detached' | 'inline' | 'volume-only' | 'hidden';
+    showCornerVolume: boolean;
     defaultVolume: number;
     syncVideoWithAudio: boolean;
     visualizer: 'off' | 'bars' | 'waveform' | 'ring';
@@ -557,6 +569,7 @@ export function createDefaultProfile(): ProfileConfigV1 {
       autoplayOnEnter: false,
       shuffle: false,
       playerStyle: 'detached',
+      showCornerVolume: false,
       defaultVolume: 60,
       syncVideoWithAudio: false,
       visualizer: 'bars',

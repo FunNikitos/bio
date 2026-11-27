@@ -1,0 +1,272 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "tabTitle": "@Romash",
+    "animatedTabTitle": true,
+    "faviconUrl": "",
+    "seoTitle": "Romash",
+    "seoDescription": "Youtuber / Streamer",
+    "seoImageUrl": "",
+    "nsfwGate": false,
+    "passcode": "",
+    "passcodeHint": "",
+    "showBrandingFooter": false
+  },
+  "identity": {
+    "displayName": "Romash",
+    "username": "romash_10",
+    "uid": 1,
+    "showUid": false,
+    "showUsername": false,
+    "showJoinDate": false,
+    "joinDate": "2026-11-27",
+    "pronounsLeft": "",
+    "pronounsRight": "",
+    "location": "",
+    "status": "",
+    "bio": "Youtuber / Streamer",
+    "tagAlign": "center",
+    "tags": [],
+    "verified": {
+      "enabled": false,
+      "placement": "displayName",
+      "color": "#ffffff"
+    }
+  },
+  "avatar": {
+    "url": "",
+    "visible": true,
+    "shape": "circle",
+    "size": 118,
+    "blur": 0,
+    "objectX": 50,
+    "objectY": 50,
+    "scale": 1,
+    "frameStyle": "none",
+    "frameColor": "#ffffff",
+    "decoration": "none",
+    "customDecorationUrl": "",
+    "expandOnClick": false,
+    "protectImage": false,
+    "bannerUrl": "",
+    "bannerFade": 0,
+    "bannerAvatarCutout": false
+  },
+  "layout": {
+    "pageMode": "card",
+    "cardLayout": "classic",
+    "alignment": "center",
+    "pageScale": 100,
+    "cardStyle": "frosted",
+    "cardSurfacePattern": "solid",
+    "cardWidth": 640,
+    "cardHeight": 0,
+    "cardOpacity": 13,
+    "cardBlur": 10,
+    "cardRadius": 20,
+    "cardContentFade": 100,
+    "borderWidth": 0,
+    "borderStyle": "none",
+    "borderAnimated": "none",
+    "cardHoverEffect": "none",
+    "tiltEnabled": false,
+    "tiltMode": "screen",
+    "tiltStrength": 3,
+    "entranceAnimation": "rise",
+    "elementsStagger": "none",
+    "cardDelaySec": 0,
+    "sectionMode": { "snap": true, "dotsSide": "right", "wide": false, "scrollHint": "" },
+    "terminalMode": { "promptName": "romash", "theme": "white", "typingSpeed": 6 },
+    "cornerWidgets": {
+      "views": "card-bottom-left",
+      "audio": "detached"
+    },
+    "blocksBeforeLinks": true
+  },
+  "theme": {
+    "presetId": "romash-glass",
+    "accent": "#ffffff",
+    "text": "#ffffff",
+    "background": "#080808",
+    "cardColor": "#1b1b1b",
+    "gradientColor": "#1b1b1b",
+    "iconColor": "#ffffff",
+    "fx1": "#ffffff",
+    "fx2": "#e2e8f0",
+    "specificTextColors": {},
+    "fontFamily": "Onest",
+    "usernameFontFamily": "",
+    "customFontUrl": "",
+    "customFontName": "",
+    "fontSizeScale": 1,
+    "usernameSize": 40,
+    "usernameWeight": 600,
+    "bioSize": "medium",
+    "letterSpacing": -0.01
+  },
+  "effects": {
+    "splash": {
+      "enabled": true,
+      "style": "blur-curtain",
+      "text": "click to enter...",
+      "subtitle": "",
+      "countdownSec": 0
+    },
+    "background": {
+      "type": "solid",
+      "color1": "#080808",
+      "color2": "#080808",
+      "gradientAngle": 180,
+      "mediaUrl": "",
+      "posterUrl": "",
+      "videoMuted": true,
+      "videoOpacity": 85,
+      "mediaBlur": 0,
+      "dim": 15,
+      "colorWash": "#080808",
+      "washStrength": 0,
+      "fit": "cover",
+      "filter": "none",
+      "particleEffect": "snow",
+      "particleIntensity": 1
+    },
+    "usernameEffect": "sparkle",
+    "bioEffect": "none",
+    "extraNameGlow": false,
+    "effectColor1": "#ffffff",
+    "effectColor2": "#cbd5e1",
+    "typewriter": {
+      "phrases": [],
+      "typeSpeed": 6,
+      "deleteSpeed": 7,
+      "caret": "bar",
+      "loop": true
+    },
+    "cursor": {
+      "customUrl": "",
+      "sizePct": 100,
+      "trail": "none",
+      "trailColor": "#ffffff",
+      "trailSpeed": "normal",
+      "clickSound": "none",
+      "clickVolume": 0
+    }
+  },
+  "audio": {
+    "enabled": true,
+    "autoplayOnEnter": true,
+    "shuffle": false,
+    "playerStyle": "detached",
+    "showCornerVolume": true,
+    "defaultVolume": 60,
+    "syncVideoWithAudio": false,
+    "visualizer": "off",
+    "beatShake": false,
+    "showLyrics": false,
+    "tracks": [
+      {
+        "id": "trk-romash",
+        "title": "Romash",
+        "artist": "",
+        "url": "",
+        "coverUrl": "",
+        "lrcText": ""
+      }
+    ]
+  },
+  "links": {
+    "linkStyle": "icons",
+    "iconStyle": "plain",
+    "iconSizePx": 38,
+    "monochromeIcons": false,
+    "glowIcons": false,
+    "align": "center",
+    "randomizeOrder": false,
+    "items": [
+      {
+        "id": "lnk-yt",
+        "platform": "youtube",
+        "label": "YouTube",
+        "subtitle": "",
+        "url": "https://youtube.com/@Romash_10",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#ff0000",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      },
+      {
+        "id": "lnk-ig",
+        "platform": "instagram",
+        "label": "Instagram",
+        "subtitle": "",
+        "url": "https://instagram.com/romash_magar1/",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#d62976",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      },
+      {
+        "id": "lnk-dc",
+        "platform": "discord",
+        "label": "Discord",
+        "subtitle": "",
+        "url": "https://discord.com/invite/dWWsysShYN",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#5865f2",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      },
+      {
+        "id": "lnk-wa",
+        "platform": "whatsapp",
+        "label": "WhatsApp",
+        "subtitle": "",
+        "url": "https://chat.whatsapp.com/G4t5V9Ue9J6ArMfhO0W2u1",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#25d366",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      }
+    ]
+  },
+  "badges": {
+    "placement": "below-name",
+    "boxStyle": "one-box",
+    "sizePct": 100,
+    "monochrome": false,
+    "glow": false,
+    "glowColor": "#ffffff",
+    "items": []
+  },
+  "blocks": [
+    {
+      "id": "blk-dc-romash",
+      "visible": true,
+      "type": "discord",
+      "style": "pill",
+      "displayName": "romash_magar1",
+      "username": "romash_magar1",
+      "status": "offline",
+      "activity": "",
+      "subtext": "last seen unknown",
+      "guildTag": "",
+      "avatarUrl": "",
+      "bannerColor": "#5865f2",
+      "showBadges": false
+    }
+  ],
+  "analytics": {
+    "trackViews": true,
+    "showViewsBadge": true,
+    "trackClicks": true,
+    "enableLikes": false
+  }
+}

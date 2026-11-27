@@ -89,6 +89,13 @@
     display: grid;
     place-items: center;
   }
+  .av-deco.av-deco-custom {
+    inset: unset;
+    width: 116%;
+    height: 116%;
+    left: -8%;
+    top: -7%;
+  }
   .av-deco img {
     width: 100%;
     height: 100%;

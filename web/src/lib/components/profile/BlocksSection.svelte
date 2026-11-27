@@ -40,6 +40,26 @@
     {#each blocks.filter((b) => b.visible) as block (block.id)}
       {#if block.type === 'divider'}
         <div class="blk-divider style-{block.style}" aria-hidden="true"></div>
+      {:else if block.type === 'discord' && block.style === 'pill'}
+        <section class="blk-discord-pill" style="--dc-banner:{block.bannerColor || '#5865f2'}">
+          <div class="dc-av-wrap is-pill">
+            {#if block.avatarUrl}
+              <img src={block.avatarUrl} alt="" class="dc-av pill-size" />
+            {:else}
+              <div class="dc-av pill-size fallback">{(block.displayName || block.username || 'D').slice(0, 1).toUpperCase()}</div>
+            {/if}
+            <span class="dc-status-dot st-{block.status}" aria-hidden="true"></span>
+          </div>
+          <div class="dc-meta">
+            <div class="dc-name pill-name">
+              {block.displayName || block.username}
+              {#if block.guildTag}
+                <span class="dc-tag">{block.guildTag}</span>
+              {/if}
+            </div>
+            <div class="dc-sub">{block.activity || block.subtext || 'last seen unknown'}</div>
+          </div>
+        </section>
       {:else}
         <section class="blk-card">
           {#if block.type === 'clock'}
@@ -52,13 +72,16 @@
               <div class="clock-time">{info.time}</div>
             </div>
           {:else if block.type === 'discord'}
-            <div class="blk-discord" style="--dc-banner:{block.bannerColor || '#5865f2'}">
+            <div class="blk-discord" class:is-pill={block.style === 'pill'} style="--dc-banner:{block.bannerColor || '#5865f2'}">
               <div class="dc-head">
-                {#if block.avatarUrl}
-                  <img src={block.avatarUrl} alt="" class="dc-av" />
-                {:else}
-                  <div class="dc-av fallback">{(block.displayName || block.username || 'D').slice(0, 1).toUpperCase()}</div>
-                {/if}
+                <div class="dc-av-wrap">
+                  {#if block.avatarUrl}
+                    <img src={block.avatarUrl} alt="" class="dc-av" />
+                  {:else}
+                    <div class="dc-av fallback">{(block.displayName || block.username || 'D').slice(0, 1).toUpperCase()}</div>
+                  {/if}
+                  <span class="dc-status-dot st-{block.status}" aria-hidden="true"></span>
+                </div>
                 <div class="dc-meta">
                   <div class="dc-name">
                     {block.displayName || block.username}
@@ -66,9 +89,13 @@
                       <span class="dc-tag">{block.guildTag}</span>
                     {/if}
                   </div>
-                  <div class="blk-muted">@{block.username} · {block.status}</div>
-                  {#if block.activity}
-                    <div class="dc-act">{block.activity}</div>
+                  {#if block.style === 'pill'}
+                    <div class="dc-sub">{block.activity || block.subtext || 'last seen unknown'}</div>
+                  {:else}
+                    <div class="blk-muted">@{block.username} · {block.status}</div>
+                    {#if block.activity}
+                      <div class="dc-act">{block.activity}</div>
+                    {/if}
                   {/if}
                 </div>
               </div>
@@ -174,9 +201,43 @@
   .clock-time { font-size: 1.45rem; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--bio-accent); }
 
   .dc-head { display: flex; align-items: center; gap: 12px; }
-  .dc-av { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; flex: none; }
+  .dc-av-wrap { position: relative; flex: none; }
+  .dc-av { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; display: block; }
+  .dc-av.pill-size { width: 66px; height: 66px; }
   .dc-av.fallback { display: grid; place-items: center; background: var(--dc-banner); font-weight: 700; color: #fff; }
+  .dc-status-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2.5px solid #141418;
+    background: #71717a;
+  }
+  .dc-status-dot.st-online { background: #22c55e; }
+  .dc-status-dot.st-idle { background: #f59e0b; }
+  .dc-status-dot.st-dnd { background: #ef4444; }
+  .dc-status-dot.st-offline {
+    background: #18181b;
+    box-shadow: inset 0 0 0 3px #9ca3af;
+  }
+  .blk-discord-pill {
+    margin: 4px auto 0;
+    width: fit-content;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px 10px 10px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    text-align: left;
+  }
   .dc-name { font-weight: 700; font-size: 0.95rem; display: flex; align-items: center; gap: 6px; }
+  .dc-name.pill-name { font-size: 1.06rem; font-weight: 600; }
+  .dc-sub { font-size: 0.82rem; font-style: italic; color: var(--bio-text-muted); margin-top: 2px; }
   .dc-tag { font-size: 0.7rem; padding: 1px 7px; border-radius: 6px; background: color-mix(in srgb, var(--bio-accent) 25%, transparent); }
   .dc-act { font-size: 0.82rem; margin-top: 2px; }
 

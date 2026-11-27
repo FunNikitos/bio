@@ -211,11 +211,13 @@
   <div class="adm-grid2">
     <label>Позиция счётчика просмотров/лайков
       <select bind:value={draft.layout.cornerWidgets.views} onchange={onMutate}>
-        <option value="bottom-left">Нижний левый угол</option>
-        <option value="bottom-right">Нижний правый угол</option>
-        <option value="top-left">Верхний левый угол</option>
-        <option value="top-right">Верхний правый угол</option>
-        <option value="inline">Внутри карточки</option>
+        <option value="bottom-left">Нижний левый угол экрана</option>
+        <option value="bottom-right">Нижний правый угол экрана</option>
+        <option value="top-left">Верхний левый угол экрана</option>
+        <option value="top-right">Верхний правый угол экрана</option>
+        <option value="card-bottom-left">Низ карточки слева (как guns.lol)</option>
+        <option value="card-bottom-right">Низ карточки справа</option>
+        <option value="inline">Внутри карточки по центру</option>
         <option value="hidden">Скрыт</option>
       </select>
     </label>
@@ -230,5 +232,8 @@
         <option value="hidden">Скрыт</option>
       </select>
     </label>
+  </div>
+  <div class="adm-checks">
+    <label class="chk"><input type="checkbox" bind:checked={draft.layout.blocksBeforeLinks} onchange={onMutate} /> Показывать блоки (Discord и др.) перед ссылками</label>
   </div>
 </div>
