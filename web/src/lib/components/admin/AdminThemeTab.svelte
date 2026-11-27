@@ -1,6 +1,6 @@
 <script lang="ts">
   import { cloneProfile, type ProfileConfigV1 } from '../../schema/profile';
-  import { BUILTIN_FONTS, COLOR_SWATCHES, SKIN_PRESETS } from '../../schema/presets';
+  import { BUILTIN_FONTS, COLOR_SWATCHES, create952RomashProfile, SKIN_PRESETS } from '../../schema/presets';
 
   interface Props {
     draft: ProfileConfigV1;
@@ -38,6 +38,11 @@
       </button>
     {/each}
   </div>
+  <div class="adm-row" style="margin-top:6px;">
+    <button type="button" class="adm-btn" onclick={() => onApplyPreset(create952RomashProfile())}>
+      Загрузить полный профиль 952 × romash_10 (портрет, видео, музыка)
+    </button>
+  </div>
 </div>
 
 <div class="adm-group">
@@ -63,6 +68,11 @@
         onclick={() => { draft.theme.accent = sw; onMutate(); }}
       ></button>
     {/each}
+  </div>
+  <div class="adm-row" style="margin-top:6px;">
+    <button type="button" class="adm-btn" onclick={() => onApplyPreset(create952RomashProfile())}>
+      Загрузить полный профиль 952 × romash_10 (портрет, видео, музыка)
+    </button>
   </div>
 </div>
 

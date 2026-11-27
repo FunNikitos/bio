@@ -1,4 +1,4 @@
-import type { ProfileConfigV1 } from './profile';
+import { createDefaultProfile, type ProfileConfigV1 } from './profile';
 
 export interface ThemePreset {
   id: string;
@@ -466,3 +466,120 @@ export const SKIN_PRESETS: ThemePreset[] = [
     })
   }
 ];
+
+export function create952RomashProfile(): ProfileConfigV1 {
+  const base = createDefaultProfile();
+  const romash = SKIN_PRESETS.find((p) => p.id === 'romash-glass')!.apply(base);
+  return {
+    ...romash,
+    meta: {
+      ...romash.meta,
+      tabTitle: '@952 · Под гипнозом',
+      animatedTabTitle: true,
+      faviconUrl: '/demo/952/portrait.webp',
+      seoTitle: '952 · Под гипнозом',
+      seoDescription: 'Музыкальная визитка 952 — Под гипнозом (ARTIK & ASTI).'
+    },
+    identity: {
+      ...romash.identity,
+      displayName: '952',
+      username: '952',
+      showUid: false,
+      showUsername: false,
+      showJoinDate: false,
+      location: '',
+      status: '',
+      bio: 'Под гипнозом · ARTIK & ASTI',
+      tags: [],
+      verified: { enabled: false, placement: 'displayName', color: '#ffffff' }
+    },
+    avatar: {
+      ...romash.avatar,
+      url: '/demo/952/portrait.webp',
+      visible: true,
+      shape: 'circle',
+      size: 118,
+      objectX: 50,
+      objectY: 39,
+      frameStyle: 'none',
+      decoration: 'none',
+      expandOnClick: true
+    },
+    theme: {
+      ...romash.theme,
+      presetId: 'romash-glass',
+      usernameSize: 52,
+      usernameWeight: 600
+    },
+    effects: {
+      ...romash.effects,
+      background: {
+        ...romash.effects.background,
+        type: 'video',
+        mediaUrl: '/demo/952/scene-hd.mp4',
+        posterUrl: '/demo/952/poster.webp',
+        videoMuted: true,
+        videoOpacity: 85,
+        dim: 32,
+        colorWash: '#0e0d18',
+        washStrength: 35,
+        filter: 'grain',
+        particleEffect: 'snow',
+        particleIntensity: 0.9
+      }
+    },
+    audio: {
+      ...romash.audio,
+      enabled: true,
+      autoplayOnEnter: true,
+      playerStyle: 'detached',
+      showCornerVolume: true,
+      defaultVolume: 65,
+      syncVideoWithAudio: true,
+      visualizer: 'waveform',
+      tracks: [
+        {
+          id: 'trk-952',
+          title: 'Под гипнозом',
+          artist: 'ARTIK & ASTI',
+          url: '/demo/952/hypnosis.m4a',
+          coverUrl: '/demo/952/poster.webp',
+          lrcText: ''
+        }
+      ]
+    },
+    links: {
+      ...romash.links,
+      linkStyle: 'icons',
+      iconStyle: 'plain',
+      iconSizePx: 38,
+      monochromeIcons: false,
+      glowIcons: false,
+      align: 'center',
+      items: [
+        { id: 'lnk-952-yt', platform: 'youtube', label: 'YouTube', subtitle: '', url: 'https://youtube.com', mode: 'link', customIconUrl: '', glowColor: '#ff0000', pinned: false, is18Plus: false, visible: true },
+        { id: 'lnk-952-ig', platform: 'instagram', label: 'Instagram', subtitle: '', url: 'https://instagram.com', mode: 'link', customIconUrl: '', glowColor: '#d62976', pinned: false, is18Plus: false, visible: true },
+        { id: 'lnk-952-dc', platform: 'discord', label: 'Discord', subtitle: '', url: '952#0952', mode: 'copy', customIconUrl: '', glowColor: '#5865f2', pinned: false, is18Plus: false, visible: true },
+        { id: 'lnk-952-wa', platform: 'whatsapp', label: 'WhatsApp', subtitle: '', url: 'https://whatsapp.com', mode: 'link', customIconUrl: '', glowColor: '#25d366', pinned: false, is18Plus: false, visible: true }
+      ]
+    },
+    badges: { ...romash.badges, items: [] },
+    blocks: [
+      {
+        id: 'blk-dc-952',
+        visible: true,
+        type: 'discord',
+        style: 'pill',
+        displayName: '952',
+        username: '952',
+        status: 'offline',
+        activity: '',
+        subtext: 'Под гипнозом · last seen recently',
+        guildTag: '',
+        avatarUrl: '/demo/952/portrait.webp',
+        bannerColor: '#5865f2',
+        showBadges: false
+      }
+    ]
+  };
+}

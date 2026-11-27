@@ -1,0 +1,284 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "tabTitle": "@952 · Под гипнозом",
+    "animatedTabTitle": true,
+    "faviconUrl": "/demo/952/portrait.webp",
+    "seoTitle": "952 · Под гипнозом",
+    "seoDescription": "Музыкальная визитка 952 — Под гипнозом (ARTIK & ASTI).",
+    "seoImageUrl": "",
+    "nsfwGate": false,
+    "passcode": "",
+    "passcodeHint": "",
+    "showBrandingFooter": false
+  },
+  "identity": {
+    "displayName": "952",
+    "username": "952",
+    "uid": 1,
+    "showUid": false,
+    "showUsername": false,
+    "showJoinDate": false,
+    "joinDate": "2026-11-25",
+    "pronounsLeft": "",
+    "pronounsRight": "",
+    "location": "",
+    "status": "",
+    "bio": "Под гипнозом · ARTIK & ASTI",
+    "tagAlign": "center",
+    "tags": [],
+    "verified": {
+      "enabled": false,
+      "placement": "displayName",
+      "color": "#ffffff"
+    }
+  },
+  "avatar": {
+    "url": "/demo/952/portrait.webp",
+    "visible": true,
+    "shape": "circle",
+    "size": 118,
+    "blur": 0,
+    "objectX": 50,
+    "objectY": 39,
+    "scale": 1,
+    "frameStyle": "none",
+    "frameColor": "#8b5cf6",
+    "decoration": "none",
+    "customDecorationUrl": "",
+    "expandOnClick": true,
+    "protectImage": false,
+    "bannerUrl": "",
+    "bannerFade": 40,
+    "bannerAvatarCutout": true
+  },
+  "layout": {
+    "pageMode": "card",
+    "cardLayout": "classic",
+    "alignment": "center",
+    "pageScale": 100,
+    "cardStyle": "frosted",
+    "cardSurfacePattern": "solid",
+    "cardWidth": 640,
+    "cardHeight": 0,
+    "cardOpacity": 13,
+    "cardBlur": 10,
+    "cardRadius": 20,
+    "cardContentFade": 100,
+    "borderWidth": 0,
+    "borderStyle": "none",
+    "borderAnimated": "none",
+    "cardHoverEffect": "none",
+    "tiltEnabled": false,
+    "tiltMode": "screen",
+    "tiltStrength": 4,
+    "entranceAnimation": "rise",
+    "elementsStagger": "rise-up",
+    "cardDelaySec": 0,
+    "sectionMode": {
+      "snap": true,
+      "dotsSide": "right",
+      "wide": false,
+      "scrollHint": "Листайте ниже"
+    },
+    "terminalMode": {
+      "promptName": "owner",
+      "theme": "accent",
+      "typingSpeed": 6
+    },
+    "cornerWidgets": {
+      "views": "card-bottom-left",
+      "audio": "detached"
+    },
+    "blocksBeforeLinks": true
+  },
+  "theme": {
+    "presetId": "romash-glass",
+    "accent": "#ffffff",
+    "text": "#ffffff",
+    "background": "#080808",
+    "cardColor": "#1b1b1b",
+    "gradientColor": "#1b1b1b",
+    "iconColor": "#ffffff",
+    "fx1": "#ffffff",
+    "fx2": "#e2e8f0",
+    "specificTextColors": {},
+    "fontFamily": "Onest",
+    "usernameFontFamily": "",
+    "customFontUrl": "",
+    "customFontName": "",
+    "fontSizeScale": 1,
+    "usernameSize": 52,
+    "usernameWeight": 600,
+    "bioSize": "medium",
+    "letterSpacing": -0.02
+  },
+  "effects": {
+    "splash": {
+      "enabled": true,
+      "style": "blur-curtain",
+      "text": "click to enter...",
+      "subtitle": "",
+      "countdownSec": 0
+    },
+    "background": {
+      "type": "video",
+      "color1": "#080808",
+      "color2": "#080808",
+      "gradientAngle": 145,
+      "mediaUrl": "/demo/952/scene-hd.mp4",
+      "posterUrl": "/demo/952/poster.webp",
+      "videoMuted": true,
+      "videoOpacity": 85,
+      "mediaBlur": 0,
+      "dim": 32,
+      "colorWash": "#0e0d18",
+      "washStrength": 35,
+      "fit": "cover",
+      "filter": "grain",
+      "particleEffect": "snow",
+      "particleIntensity": 0.9
+    },
+    "usernameEffect": "sparkle",
+    "bioEffect": "none",
+    "extraNameGlow": true,
+    "effectColor1": "#ffffff",
+    "effectColor2": "#cbd5e1",
+    "typewriter": {
+      "phrases": [
+        "Открытый конструктор bio",
+        "Стиль, медиа и полная свобода"
+      ],
+      "typeSpeed": 6,
+      "deleteSpeed": 7,
+      "caret": "bar",
+      "loop": true
+    },
+    "cursor": {
+      "customUrl": "",
+      "sizePct": 100,
+      "trail": "none",
+      "trailColor": "#a78bfa",
+      "trailSpeed": "normal",
+      "clickSound": "none",
+      "clickVolume": 45
+    }
+  },
+  "audio": {
+    "enabled": true,
+    "autoplayOnEnter": true,
+    "shuffle": false,
+    "playerStyle": "detached",
+    "showCornerVolume": true,
+    "defaultVolume": 65,
+    "syncVideoWithAudio": true,
+    "visualizer": "waveform",
+    "beatShake": false,
+    "showLyrics": false,
+    "tracks": [
+      {
+        "id": "trk-952",
+        "title": "Под гипнозом",
+        "artist": "ARTIK & ASTI",
+        "url": "/demo/952/hypnosis.m4a",
+        "coverUrl": "/demo/952/poster.webp",
+        "lrcText": ""
+      }
+    ]
+  },
+  "links": {
+    "linkStyle": "icons",
+    "iconStyle": "plain",
+    "iconSizePx": 38,
+    "monochromeIcons": false,
+    "glowIcons": false,
+    "align": "center",
+    "randomizeOrder": false,
+    "items": [
+      {
+        "id": "lnk-952-yt",
+        "platform": "youtube",
+        "label": "YouTube",
+        "subtitle": "",
+        "url": "https://youtube.com",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#ff0000",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      },
+      {
+        "id": "lnk-952-ig",
+        "platform": "instagram",
+        "label": "Instagram",
+        "subtitle": "",
+        "url": "https://instagram.com",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#d62976",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      },
+      {
+        "id": "lnk-952-dc",
+        "platform": "discord",
+        "label": "Discord",
+        "subtitle": "",
+        "url": "952#0952",
+        "mode": "copy",
+        "customIconUrl": "",
+        "glowColor": "#5865f2",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      },
+      {
+        "id": "lnk-952-wa",
+        "platform": "whatsapp",
+        "label": "WhatsApp",
+        "subtitle": "",
+        "url": "https://whatsapp.com",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#25d366",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      }
+    ]
+  },
+  "badges": {
+    "placement": "below-name",
+    "boxStyle": "one-box",
+    "sizePct": 100,
+    "monochrome": false,
+    "glow": true,
+    "glowColor": "#a78bfa",
+    "items": []
+  },
+  "blocks": [
+    {
+      "id": "blk-dc-952",
+      "visible": true,
+      "type": "discord",
+      "style": "pill",
+      "displayName": "952",
+      "username": "952",
+      "status": "offline",
+      "activity": "",
+      "subtext": "Под гипнозом · last seen recently",
+      "guildTag": "",
+      "avatarUrl": "/demo/952/portrait.webp",
+      "bannerColor": "#5865f2",
+      "showBadges": false
+    }
+  ],
+  "analytics": {
+    "trackViews": true,
+    "showViewsBadge": true,
+    "trackClicks": true,
+    "enableLikes": false
+  }
+}

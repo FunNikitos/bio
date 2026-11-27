@@ -1,4 +1,5 @@
 import http from 'node:http';
+import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { AuthManager } from './auth.mjs';
@@ -93,7 +94,7 @@ export async function createBioApp({ dataDir, distDir, setupToken = '' }) {
   await store.init();
   const initialSetupCode = await auth.init();
 
-  const serveFileSafe = async (res, baseDir, relPath) => {
+  const serveFileSafe = async (req, res, baseDir, relPath) => {
     const cleanRel = relPath.replace(/^\/+/, '');
     const target = path.resolve(baseDir, cleanRel);
     const resolvedBase = path.resolve(baseDir);
@@ -104,12 +105,40 @@ export async function createBioApp({ dataDir, distDir, setupToken = '' }) {
       const stat = await fs.stat(target);
       if (!stat.isFile()) return false;
       const ext = path.extname(target).toLowerCase();
-      const buf = await fs.readFile(target);
+      const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+      const total = stat.size;
+      const rangeHeader = req.headers.range;
+
+      if (rangeHeader && total > 0) {
+        const match = rangeHeader.match(/bytes=(\d*)-(\d*)/);
+        if (!match) {
+          res.writeHead(416, { 'Content-Range': `bytes */${total}` });
+          res.end();
+          return true;
+        }
+        const start = match[1] ? Number(match[1]) : 0;
+        const end = match[2] ? Math.min(total - 1, Number(match[2])) : total - 1;
+        if (Number.isNaN(start) || Number.isNaN(end) || start > end || start >= total) {
+          res.writeHead(416, { 'Content-Range': `bytes */${total}` });
+          res.end();
+          return true;
+        }
+        res.writeHead(206, {
+          'Content-Type': contentType,
+          'Accept-Ranges': 'bytes',
+          'Content-Range': `bytes ${start}-${end}/${total}`,
+          'Content-Length': end - start + 1
+        });
+        fsSync.createReadStream(target, { start, end }).pipe(res);
+        return true;
+      }
+
       res.writeHead(200, {
-        'Content-Type': MIME_TYPES[ext] || 'application/octet-stream',
-        'Content-Length': buf.length
+        'Content-Type': contentType,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': total
       });
-      res.end(buf);
+      fsSync.createReadStream(target).pipe(res);
       return true;
     } catch {
       return false;
@@ -206,7 +235,7 @@ export async function createBioApp({ dataDir, distDir, setupToken = '' }) {
 
       // Uploads static files
       if (method === 'GET' && pathname.startsWith('/uploads/')) {
-        const ok = await serveFileSafe(res, store.uploadsDir, pathname.slice('/uploads/'.length));
+        const ok = await serveFileSafe(req, res, store.uploadsDir, pathname.slice('/uploads/'.length));
         if (ok !== false) return;
         return sendJson(res, 404, { error: 'Файл не найден' });
       }
@@ -214,10 +243,10 @@ export async function createBioApp({ dataDir, distDir, setupToken = '' }) {
       // Built Svelte SPA assets & routes (/ and /admin)
       if (method === 'GET' && distDir) {
         if (pathname !== '/' && !pathname.startsWith('/admin')) {
-          const served = await serveFileSafe(res, distDir, pathname);
+          const served = await serveFileSafe(req, res, distDir, pathname);
           if (served) return;
         }
-        const indexServed = await serveFileSafe(res, distDir, 'index.html');
+        const indexServed = await serveFileSafe(req, res, distDir, 'index.html');
         if (indexServed) return;
       }
 

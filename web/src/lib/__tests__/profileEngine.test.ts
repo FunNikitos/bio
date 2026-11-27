@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createDefaultProfile, normalizeProfile } from '../schema/profile';
-import { SKIN_PRESETS } from '../schema/presets';
+import { create952RomashProfile, SKIN_PRESETS } from '../schema/presets';
 import { computeProfileStyle } from '../engine/themeCss';
 import { renderBioMarkup } from '../engine/bioMarkdown';
 import { activeLrcIndex, parseLrc } from '../engine/effects/lrcParser';
@@ -32,6 +32,12 @@ describe('profile schema and presets', () => {
     expect(romash.layout.cardWidth).toBe(640);
     expect(romash.layout.cornerWidgets.views).toBe('card-bottom-left');
     expect(romash.audio.showCornerVolume).toBe(true);
+
+    const demo952 = normalizeProfile(create952RomashProfile());
+    expect(demo952.identity.displayName).toBe('952');
+    expect(demo952.avatar.url).toBe('/demo/952/portrait.webp');
+    expect(demo952.effects.background.mediaUrl).toBe('/demo/952/scene-hd.mp4');
+    expect(demo952.audio.tracks[0]?.url).toBe('/demo/952/hypnosis.m4a');
   });
 });
 

@@ -99,6 +99,14 @@ describe('bio self-hosted server workflow', () => {
       assert.equal(fetchedAsset.status, 200);
       assert.equal(await fetchedAsset.text(), 'fake-png-bytes');
 
+      // 6b. Test HTTP Range partial response for video/audio seeking
+      const rangedAsset = await fetch(`${baseUrl}${uploaded.url}`, {
+        headers: { Range: 'bytes=0-3' }
+      });
+      assert.equal(rangedAsset.status, 206);
+      assert.equal(rangedAsset.headers.get('content-range'), 'bytes 0-3/14');
+      assert.equal(await rangedAsset.text(), 'fake');
+
       // 7. Reject disallowed extension (.exe/.html)
       const badForm = new FormData();
       badForm.append('file', new Blob(['<script>'], { type: 'text/html' }), 'evil.html');

@@ -48,9 +48,7 @@
     }
     passError = '';
     opening = true;
-    window.setTimeout(() => {
-      onEnter();
-    }, style === 'slit-curtain' ? 420 : 240);
+    onEnter();
   }
 </script>
 
