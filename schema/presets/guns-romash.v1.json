@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "tabTitle": "@Ro",
+    "animatedTabTitle": false,
+    "faviconUrl": "",
+    "seoTitle": "Romash",
+    "seoDescription": "discord.gg/guns",
+    "seoImageUrl": "",
+    "nsfwGate": false,
+    "passcode": "",
+    "passcodeHint": "",
+    "showBrandingFooter": false
+  },
+  "identity": {
+    "displayName": "Romash",
+    "username": "romash_10",
+    "uid": 1,
+    "showUid": false,
+    "showUsername": false,
+    "showJoinDate": false,
+    "joinDate": "2026-11-25",
+    "pronounsLeft": "",
+    "pronounsRight": "",
+    "location": "",
+    "status": "",
+    "bio": "discord.gg/guns",
+    "tagAlign": "center",
+    "tags": [],
+    "verified": {
+      "enabled": false,
+      "placement": "displayName",
+      "color": "#a13ecf"
+    }
+  },
+  "avatar": {
+    "url": "/demo/guns-romash/3ba1b89daaf9.png",
+    "visible": true,
+    "shape": "square",
+    "size": 137,
+    "blur": 0,
+    "objectX": 50,
+    "objectY": 50,
+    "scale": 1,
+    "frameStyle": "none",
+    "frameColor": "#ffffff",
+    "decoration": "none",
+    "customDecorationUrl": "",
+    "expandOnClick": false,
+    "protectImage": false,
+    "bannerUrl": "",
+    "bannerFade": 0,
+    "bannerAvatarCutout": false
+  },
+  "layout": {
+    "pageMode": "card",
+    "cardLayout": "compact",
+    "alignment": "center",
+    "pageScale": 100,
+    "cardStyle": "frosted",
+    "cardSurfacePattern": "solid",
+    "cardWidth": 640,
+    "cardHeight": 0,
+    "cardOpacity": 13,
+    "cardBlur": 10,
+    "cardRadius": 20,
+    "cardContentFade": 100,
+    "borderWidth": 0,
+    "borderStyle": "none",
+    "borderAnimated": "none",
+    "cardHoverEffect": "none",
+    "tiltEnabled": true,
+    "tiltMode": "screen",
+    "tiltStrength": 4,
+    "entranceAnimation": "none",
+    "elementsStagger": "none",
+    "cardDelaySec": 0,
+    "sectionMode": {
+      "snap": true,
+      "dotsSide": "right",
+      "wide": false,
+      "scrollHint": "Листайте ниже"
+    },
+    "terminalMode": {
+      "promptName": "owner",
+      "theme": "accent",
+      "typingSpeed": 6
+    },
+    "cornerWidgets": {
+      "views": "bottom-left",
+      "audio": "detached"
+    }
+  },
+  "theme": {
+    "presetId": "guns-romash",
+    "accent": "#a13ecf",
+    "text": "#ffffff",
+    "background": "#0a0a0a",
+    "cardColor": "#1b1b1b",
+    "gradientColor": "#a13ecf",
+    "iconColor": "#ffffff",
+    "fx1": "#a13ecf",
+    "fx2": "#ffffff",
+    "specificTextColors": {},
+    "fontFamily": "Satoshi",
+    "usernameFontFamily": "",
+    "customFontUrl": "/demo/guns-romash/44aca66be9fd.woff2",
+    "customFontName": "Satoshi",
+    "fontSizeScale": 1,
+    "usernameSize": 40,
+    "usernameWeight": 600,
+    "bioSize": "medium",
+    "letterSpacing": 0
+  },
+  "effects": {
+    "splash": {
+      "enabled": true,
+      "style": "blur-curtain",
+      "text": "click to enter...",
+      "subtitle": "",
+      "countdownSec": 0
+    },
+    "background": {
+      "type": "video",
+      "color1": "#0a0a0a",
+      "color2": "#0a0a0a",
+      "gradientAngle": 180,
+      "mediaUrl": "/demo/guns-romash/a3aa447e9edf.mp4",
+      "posterUrl": "",
+      "videoMuted": true,
+      "videoOpacity": 100,
+      "mediaBlur": 0,
+      "dim": 0,
+      "colorWash": "#090714",
+      "washStrength": 0,
+      "fit": "cover",
+      "filter": "none",
+      "particleEffect": "stars",
+      "particleIntensity": 1
+    },
+    "usernameEffect": "none",
+    "bioEffect": "none",
+    "extraNameGlow": false,
+    "effectColor1": "#c4b5fd",
+    "effectColor2": "#f472b6",
+    "typewriter": {
+      "phrases": [],
+      "typeSpeed": 6,
+      "deleteSpeed": 7,
+      "caret": "bar",
+      "loop": true
+    },
+    "cursor": {
+      "customUrl": "",
+      "sizePct": 100,
+      "trail": "none",
+      "trailColor": "#a13ecf",
+      "trailSpeed": "normal",
+      "clickSound": "none",
+      "clickVolume": 0
+    }
+  },
+  "audio": {
+    "enabled": true,
+    "autoplayOnEnter": true,
+    "shuffle": false,
+    "playerStyle": "detached",
+    "showCornerVolume": false,
+    "defaultVolume": 60,
+    "syncVideoWithAudio": false,
+    "visualizer": "off",
+    "beatShake": false,
+    "showLyrics": false,
+    "tracks": [
+      {
+        "id": "trk-1",
+        "title": "Romash",
+        "artist": "",
+        "url": "/demo/guns-romash/99edc2607f75.mp3",
+        "coverUrl": "",
+        "lrcText": ""
+      }
+    ]
+  },
+  "links": {
+    "linkStyle": "pills",
+    "iconStyle": "plain",
+    "iconSizePx": 56,
+    "monochromeIcons": false,
+    "glowIcons": false,
+    "align": "center",
+    "randomizeOrder": false,
+    "items": [
+      {
+        "id": "lnk-1",
+        "platform": "discord",
+        "label": "discord.gg/guns",
+        "subtitle": "",
+        "url": "https://discord.gg/guns",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#a13ecf",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      },
+      {
+        "id": "lnk-2",
+        "platform": "youtube",
+        "label": "youtube",
+        "subtitle": "",
+        "url": "https://youtube.com/@Romash_10",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#a13ecf",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      },
+      {
+        "id": "lnk-3",
+        "platform": "instagram",
+        "label": "instagram",
+        "subtitle": "",
+        "url": "https://instagram.com/romash_magar1/",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#a13ecf",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      }
+    ]
+  },
+  "badges": {
+    "placement": "below-name",
+    "boxStyle": "one-box",
+    "sizePct": 100,
+    "monochrome": false,
+    "glow": true,
+    "glowColor": "#a78bfa",
+    "items": []
+  },
+  "blocks": [],
+  "analytics": {
+    "trackViews": false,
+    "showViewsBadge": false,
+    "trackClicks": false,
+    "enableLikes": true
+  }
+}

@@ -8,7 +8,16 @@
     "check": "npm --prefix web run check",
     "test:web": "npm --prefix web run test",
     "test:server": "node --test server/test/server.test.mjs",
-    "test": "npm run check && npm run test:web && npm run test:server",
+    "test:capture": "node --test \"tools/capture/test/*.test.mjs\"",
+    "test": "npm run check && npm run test:web && npm run test:server && npm run test:capture",
+    "capture": "node tools/capture/cli.mjs",
+    "capture:compare": "node tools/capture/compare.mjs",
     "start": "node server/index.mjs"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "pixelmatch": "^8.0.0",
+    "playwright": "^1.65.1",
+    "pngjs": "^7.0.0"
   }
 }

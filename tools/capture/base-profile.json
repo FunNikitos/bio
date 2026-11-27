@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "tabTitle": "@owner",
+    "animatedTabTitle": false,
+    "faviconUrl": "",
+    "seoTitle": "Персональная страница bio",
+    "seoDescription": "Профиль и ссылки на собственном сервере.",
+    "seoImageUrl": "",
+    "nsfwGate": false,
+    "passcode": "",
+    "passcodeHint": "",
+    "showBrandingFooter": false
+  },
+  "identity": {
+    "displayName": "bio owner",
+    "username": "owner",
+    "uid": 1,
+    "showUid": true,
+    "showUsername": true,
+    "showJoinDate": false,
+    "joinDate": "2026-11-25",
+    "pronounsLeft": "",
+    "pronounsRight": "",
+    "location": "Self-hosted",
+    "status": "Создаю свой профиль",
+    "bio": "Открытая персональная bio-страница на собственном сервере.",
+    "tagAlign": "center",
+    "tags": [
+      "self-hosted",
+      "open-source",
+      "design"
+    ],
+    "verified": {
+      "enabled": true,
+      "placement": "displayName",
+      "color": "#a78bfa"
+    }
+  },
+  "avatar": {
+    "url": "",
+    "visible": true,
+    "shape": "circle",
+    "size": 104,
+    "blur": 0,
+    "objectX": 50,
+    "objectY": 50,
+    "scale": 1,
+    "frameStyle": "glow",
+    "frameColor": "#8b5cf6",
+    "decoration": "aurora-halo",
+    "customDecorationUrl": "",
+    "expandOnClick": true,
+    "protectImage": false,
+    "bannerUrl": "",
+    "bannerFade": 40,
+    "bannerAvatarCutout": true
+  },
+  "layout": {
+    "pageMode": "card",
+    "cardLayout": "classic",
+    "alignment": "center",
+    "pageScale": 100,
+    "cardStyle": "frosted",
+    "cardSurfacePattern": "aurora",
+    "cardWidth": 540,
+    "cardHeight": 0,
+    "cardOpacity": 58,
+    "cardBlur": 20,
+    "cardRadius": 24,
+    "cardContentFade": 100,
+    "borderWidth": 1,
+    "borderStyle": "subtle",
+    "borderAnimated": "none",
+    "cardHoverEffect": "none",
+    "tiltEnabled": true,
+    "tiltMode": "screen",
+    "tiltStrength": 4,
+    "entranceAnimation": "rise",
+    "elementsStagger": "rise-up",
+    "cardDelaySec": 0,
+    "sectionMode": {
+      "snap": true,
+      "dotsSide": "right",
+      "wide": false,
+      "scrollHint": "Листайте ниже"
+    },
+    "terminalMode": {
+      "promptName": "owner",
+      "theme": "accent",
+      "typingSpeed": 6
+    },
+    "cornerWidgets": {
+      "views": "bottom-left",
+      "audio": "detached"
+    }
+  },
+  "theme": {
+    "presetId": "aurora-glass",
+    "accent": "#8b5cf6",
+    "text": "#f8fafc",
+    "background": "#07070c",
+    "cardColor": "#0e0d18",
+    "gradientColor": "#ec4899",
+    "iconColor": "#ffffff",
+    "fx1": "#a78bfa",
+    "fx2": "#38bdf8",
+    "specificTextColors": {},
+    "fontFamily": "Onest",
+    "usernameFontFamily": "",
+    "customFontUrl": "",
+    "customFontName": "",
+    "fontSizeScale": 1,
+    "usernameSize": 34,
+    "usernameWeight": 800,
+    "bioSize": "medium",
+    "letterSpacing": -0.02
+  },
+  "effects": {
+    "splash": {
+      "enabled": false,
+      "style": "blur-curtain",
+      "text": "нажмите для входа",
+      "subtitle": "",
+      "countdownSec": 0
+    },
+    "background": {
+      "type": "linear",
+      "color1": "#090912",
+      "color2": "#1f1135",
+      "gradientAngle": 145,
+      "mediaUrl": "",
+      "posterUrl": "",
+      "videoMuted": true,
+      "videoOpacity": 85,
+      "mediaBlur": 0,
+      "dim": 25,
+      "colorWash": "#090714",
+      "washStrength": 20,
+      "fit": "cover",
+      "filter": "dots",
+      "particleEffect": "stars",
+      "particleIntensity": 1
+    },
+    "usernameEffect": "glow",
+    "bioEffect": "none",
+    "extraNameGlow": true,
+    "effectColor1": "#c4b5fd",
+    "effectColor2": "#f472b6",
+    "typewriter": {
+      "phrases": [
+        "Открытый конструктор bio",
+        "Стиль, медиа и полная свобода"
+      ],
+      "typeSpeed": 6,
+      "deleteSpeed": 7,
+      "caret": "bar",
+      "loop": true
+    },
+    "cursor": {
+      "customUrl": "",
+      "sizePct": 100,
+      "trail": "sparkles",
+      "trailColor": "#a78bfa",
+      "trailSpeed": "normal",
+      "clickSound": "tap",
+      "clickVolume": 45
+    }
+  },
+  "audio": {
+    "enabled": false,
+    "autoplayOnEnter": false,
+    "shuffle": false,
+    "playerStyle": "detached",
+    "showCornerVolume": false,
+    "defaultVolume": 60,
+    "syncVideoWithAudio": false,
+    "visualizer": "bars",
+    "beatShake": false,
+    "showLyrics": false,
+    "tracks": []
+  },
+  "links": {
+    "linkStyle": "pills",
+    "iconStyle": "soft",
+    "iconSizePx": 38,
+    "monochromeIcons": false,
+    "glowIcons": true,
+    "align": "center",
+    "randomizeOrder": false,
+    "items": [
+      {
+        "id": "link-github",
+        "platform": "github",
+        "label": "GitHub",
+        "subtitle": "Исходный код проекта",
+        "url": "https://github.com/FunNikitos/bio",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#8b5cf6",
+        "pinned": true,
+        "is18Plus": false,
+        "visible": true
+      },
+      {
+        "id": "link-discord",
+        "platform": "discord",
+        "label": "Discord",
+        "subtitle": "Нажмите, чтобы скопировать тег",
+        "url": "owner#0001",
+        "mode": "copy",
+        "customIconUrl": "",
+        "glowColor": "#5865f2",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      },
+      {
+        "id": "link-telegram",
+        "platform": "telegram",
+        "label": "Telegram",
+        "subtitle": "Канал и связь",
+        "url": "https://t.me/telegram",
+        "mode": "link",
+        "customIconUrl": "",
+        "glowColor": "#38bdf8",
+        "pinned": false,
+        "is18Plus": false,
+        "visible": true
+      }
+    ]
+  },
+  "badges": {
+    "placement": "below-name",
+    "boxStyle": "one-box",
+    "sizePct": 100,
+    "monochrome": false,
+    "glow": true,
+    "glowColor": "#a78bfa",
+    "items": [
+      {
+        "id": "b-early",
+        "label": "Self-Host Owner",
+        "icon": "crown",
+        "color": "#f5c451",
+        "visible": true
+      },
+      {
+        "id": "b-dev",
+        "label": "Open Source",
+        "icon": "code",
+        "color": "#8b5cf6",
+        "visible": true
+      },
+      {
+        "id": "b-verified",
+        "label": "Verified",
+        "icon": "sparkles",
+        "color": "#38bdf8",
+        "visible": true
+      }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "blk-clock",
+      "visible": true,
+      "type": "clock",
+      "title": "Местное время",
+      "timezone": "Europe/Moscow",
+      "label": "Моё время",
+      "hour12": false
+    }
+  ],
+  "analytics": {
+    "trackViews": true,
+    "showViewsBadge": true,
+    "trackClicks": true,
+    "enableLikes": true
+  }
+}
